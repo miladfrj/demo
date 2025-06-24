@@ -1,0 +1,61 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>لیست افراد</title>
+    <style>
+        body { font-family: Tahoma, Arial, sans-serif; background: #f2f2f2; direction: rtl; text-align: right; padding: 20px; }
+        table { width: 90%; margin: 0 auto; border-collapse: collapse; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        th, td { padding: 12px; text-align: center; border: 1px solid #ddd; font-size: 14px; }
+        th { background: #4CAF50; color: white; }
+        tr:hover { background: #f1f1f1; }
+        .btn { padding: 6px 12px; background: #4CAF50; color: white; text-decoration: none; border-radius: 4px; margin: 2px; font-size: 13px; }
+        .btn:hover { background: #45a049; }
+        .add-btn { display: block; width: 160px; margin: 20px auto; text-align: center; }
+        .logout-btn { float: left; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<a th:href="@{/logout}" class="btn logout-btn">خروج</a>
+<a th:href="@{/persons/new}" class="btn add-btn">افزودن فرد جدید</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>شناسه</th>
+        <th>نام کاربری</th>
+        <th>ایمیل</th>
+        <th>نام</th>
+        <th>نام خانوادگی</th>
+        <th>کد ملی</th>
+        <th>محل سکونت</th>
+        <th>کد پرسنلی</th>
+        <th>تاریخ تولد</th>
+        <th>عملیات</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="person : ${persons}">
+        <td th:text="${person.id}"></td>
+        <td th:text="${person.username}"></td>
+        <td th:text="${person.email}"></td>
+        <td th:text="${person.firstName}"></td>
+        <td th:text="${person.lastName}"></td>
+        <td th:text="${person.nationalCode}"></td>
+        <td th:text="${person.location}"></td>
+        <td th:text="${person.personnelCode}"></td>
+        <td th:text="${#dates.format(person.birthDate, 'yyyy-MM-dd')}"></td>
+
+        <td>
+            <a th:href="@{/persons/edit/{id}(id=${person.id})}" class="btn">ویرایش</a>
+            <a th:href="@{/persons/delete/{id}(id=${person.id})}" class="btn" onclick="return confirm('آیا حذف شود؟')">حذف</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
