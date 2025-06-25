@@ -1,6 +1,7 @@
 package ir.baharn.demobaharan.mapper;
 
 import ir.baharn.demobaharan.dto.PersonDTO;
+import ir.baharn.demobaharan.model.Department;
 import ir.baharn.demobaharan.model.Person;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,7 @@ public class PersonMapper {
                 .location(person.getLocation())
                 .personnelCode(person.getPersonnelCode())
                 .birthDate(person.getBirthDate())
+                .departmentTitle(person.getDepartment() != null ? person.getDepartment().getTitle() : null)
                 .build();
 
     }
@@ -30,7 +32,7 @@ public class PersonMapper {
     public Person toEntity(PersonDTO dto) {
         if (dto == null) return null;
 
-        return Person.builder()
+        Person person = Person.builder()
                 .id(dto.getId())
                 .username(dto.getUsername())
                 .password(dto.getPassword())
@@ -42,5 +44,12 @@ public class PersonMapper {
                 .personnelCode(dto.getPersonnelCode())
                 .birthDate(dto.getBirthDate())
                 .build();
+
+        if (dto.getDepartmentId() != null) {
+            Department department = new Department();
+            department.setId(dto.getDepartmentId());
+            person.setDepartment(department);
+        }
+        return person;
     }
 }

@@ -34,6 +34,7 @@
         <th>محل سکونت</th>
         <th>کد پرسنلی</th>
         <th>تاریخ تولد</th>
+        <th>رده</th>
         <th>عملیات</th>
     </tr>
     </thead>
@@ -48,6 +49,7 @@
         <td th:text="${person.location}"></td>
         <td th:text="${person.personnelCode}"></td>
         <td th:text="${#dates.format(person.birthDate, 'yyyy-MM-dd')}"></td>
+        <td th:text="${person.departmentTitle}"></td>
 
         <td>
             <a th:href="@{/persons/edit/{id}(id=${person.id})}" class="btn">ویرایش</a>

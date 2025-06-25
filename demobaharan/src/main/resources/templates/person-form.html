@@ -106,6 +106,17 @@
         <label>تاریخ تولد:</label>
         <input type="date" name="birthDate" th:value="${#dates.format(person.birthDate, 'yyyy-MM-dd')}" required />
 
+        <label>رده:</label>
+        <select name="departmentId" required>
+            <option value="">انتخاب کنید</option>
+            <option th:each="dept : ${departments}"
+                    th:value="${dept.id}"
+                    th:text="${dept.title}"
+                    th:selected="${dept.id} == ${person.departmentId}">
+            </option>
+        </select>
+        <a th:href="@{/departments/new}" class="btn"  target="_blank" style="margin-top: 10px; display: block; text-align: center;">ایجاد رده جدید</a>
+
         <button type="submit">ذخیره</button>
         <a th:href="@{/persons}" class="back">بازگشت به لیست</a>
     </form>

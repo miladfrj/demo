@@ -22,4 +22,7 @@ public class PersonDTO {
     private String personnelCode;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
+    private Long departmentId;
+    private String departmentTitle;
+
 }

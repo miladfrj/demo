@@ -1,9 +1,7 @@
 package ir.baharn.demobaharan.model;
 
 import ir.baharn.demobaharan.model.base.BaseModel;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -36,5 +34,9 @@ public class Person extends BaseModel {
     private String personnelCode;
     @Column(nullable = false)
     private Date birthDate;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
 
 }
