@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>انتخاب نقش</title>
+    <style>
+        body { font-family: Tahoma, sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; direction: rtl; }
+        .container { text-align: center; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1 { color: #333; margin-bottom: 30px; }
+        .btn { display: inline-block; background-color: #4CAF50; color: white; padding: 15px 30px; margin: 10px; font-size: 18px; text-decoration: none; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s; }
+        .btn:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>انتخاب نقش</h1>
+    <a th:href="@{/students/new}" class="btn"> دانشجو</a>
+    <a th:href="@{/teachers/new}" class="btn"> استاد</a>
+</div>
+</body>
+</html>

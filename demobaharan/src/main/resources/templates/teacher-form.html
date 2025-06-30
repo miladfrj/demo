@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>افزودن استاد</title>
+    <style>
+        body { font-family: Tahoma; direction: rtl; background: #f0f2f5; }
+        .container {
+            width: 400px; margin: 50px auto; background: #fff;
+            padding: 25px; border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h2 { text-align: center; color: #333; margin-bottom: 20px; }
+        label, select, input, button {
+            display: block; width: 100%; margin-top: 12px;
+            padding: 10px; border-radius: 6px;
+        }
+        input, select { border: 1px solid #ddd; }
+        button {
+            background: #4CAF50; color: white;
+            border: none; cursor: pointer;
+            transition: background 0.3s; margin-top: 20px;
+        }
+        button:hover { background: #45a049; }
+        .new-person-link { display: block; text-align: center; margin-top: 15px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>افزودن استاد</h2>
+    <form th:action="@{/teachers}" method="post">
+        <label for="personId">انتخاب شخص:</label>
+        <select id="personId" name="personId" required>
+            <option th:each="person : ${persons}" th:value="${person.id}" th:text="${person.firstName + ' ' + person.lastName}"></option>
+        </select>
+
+        <a th:href="@{/persons/new}" class="new-person-link">شخص مورد نظر در لیست نیست؟ افزودن شخص جدید</a>
+
+        <label for="teacherCode">کد استاد:</label>
+        <input type="text" id="teacherCode" name="teacherCode" required>
+
+        <button type="submit">ثبت استاد</button>
+    </form>
+</div>
+</body>
+</html>

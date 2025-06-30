@@ -1,0 +1,14 @@
+<form th:action="@{/users}" method="post">
+    <label>نام کاربری:</label>
+    <input type="text" name="username" required />
+
+    <label>رمز عبور:</label>
+    <input type="password" name="password" required />
+
+    <label>انتخاب فرد:</label>
+    <select name="personId" required>
+        <option th:each="p : ${persons}" th:value="${p.id}" th:text="${p.firstName + ' ' + p.lastName}"></option>
+    </select>
+
+    <button type="submit">ایجاد کاربر</button>
+</form>

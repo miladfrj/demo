@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fa" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ورود به سیستم</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: "Tahoma", sans-serif;
+            direction: rtl;
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 350px;
+            background: #fff;
+            padding: 30px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h2 {
+            color: #00796b;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            text-align: right;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background: #00796b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #004d40;
+        }
+
+        .error-message {
+            margin-top: 15px;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>ورود به سیستم</h2>
+    <form th:action="@{/login}" method="post">
+        <label>نام کاربری:</label>
+        <input type="text" name="username" required />
+
+        <label>رمز عبور:</label>
+        <input type="password" name="password" required />
+
+        <button type="submit">ورود</button>
+    </form>
+
+    <p class="error-message" th:if="${error}" th:text="${error}"></p>
+</div>
+</body>
+</html>
