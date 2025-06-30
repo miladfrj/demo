@@ -75,16 +75,7 @@
 <div class="container">
     <h2 th:text="${isEdit} ? 'ویرایش اطلاعات فرد' : 'افزودن فرد جدید'"></h2>
 
-    <form th:action="${isEdit} ? @{/persons/update} : @{/persons}" method="post">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-        <input type="hidden" name="id" th:value="${person.id}" />
-
-        <label>نام کاربری:</label>
-        <input type="text" name="username" th:value="${person.username}" required />
-
-        <label>رمز عبور:</label>
-        <input type="password" name="password" th:value="${person.password}" required />
-
+    <form th:action="@{/persons}" method="post">
         <label>نام:</label>
         <input type="text" name="firstName" th:value="${person.firstName}" required />
 
@@ -108,18 +99,12 @@
 
         <label>رده:</label>
         <select name="departmentId" required>
-            <option value="">انتخاب کنید</option>
-            <option th:each="dept : ${departments}"
-                    th:value="${dept.id}"
-                    th:text="${dept.title}"
-                    th:selected="${dept.id} == ${person.departmentId}">
-            </option>
+            <option th:each="dept : ${departments}" th:value="${dept.id}" th:text="${dept.title}"></option>
         </select>
-        <a th:href="@{/departments/new}" class="btn"  target="_blank" style="margin-top: 10px; display: block; text-align: center;">ایجاد رده جدید</a>
 
         <button type="submit">ذخیره</button>
-        <a th:href="@{/persons}" class="back">بازگشت به لیست</a>
     </form>
+
 </div>
 
 </body>

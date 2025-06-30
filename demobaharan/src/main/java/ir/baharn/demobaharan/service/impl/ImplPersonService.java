@@ -47,8 +47,8 @@ public class ImplPersonService implements PersonService {
         }
 
         return personRepository.findById(personDTO.getId()).map(existingPerson -> {
-                    existingPerson.setUsername(personDTO.getUsername());
-                    existingPerson.setPassword(personDTO.getPassword());
+                   // existingPerson.setUsername(personDTO.getUsername());
+                   // existingPerson.setPassword(personDTO.getPassword());
                     existingPerson.setFirstName(personDTO.getFirstName());
                     existingPerson.setLastName(personDTO.getLastName());
                     existingPerson.setEmail(personDTO.getEmail());
@@ -68,6 +68,12 @@ public class ImplPersonService implements PersonService {
         }
         personRepository.deleteById(id);
     }
+
+    @Override
+    public Person getEntityById(Long id) {
+        return personRepository.findById(id).orElse(null);
+    }
+
 
 
 }

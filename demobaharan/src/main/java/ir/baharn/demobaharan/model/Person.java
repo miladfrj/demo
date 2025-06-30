@@ -16,23 +16,22 @@ import java.util.Date;
 @SuperBuilder
 public class Person extends BaseModel {
 
-    @Column(unique = true, nullable = false)
-    private String username;
-    @Column(nullable = false)
-    private String password;
+
     @Column(nullable = false)
     private String firstName;
     @Column(nullable = false)
     private String lastName;
-    @Column(nullable = false)
+    @Column(nullable = false , unique = true)
     private String email;
-    @Column(nullable = false)
+    @Column(nullable = false , unique = true)
     private String nationalCode;
     @Column(nullable = false)
     private String location;
-    @Column(nullable = false)
+    @Column(nullable = false , unique = true)
     private String personnelCode;
     @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
+
     private Date birthDate;
 
     @ManyToOne

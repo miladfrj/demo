@@ -35,7 +35,7 @@ public class PersonController {
     @PostMapping
     public String save(@ModelAttribute("person") PersonDTO person) {
         personService.save(person);
-        return "redirect:/persons";
+        return "redirect:/role-selection";
     }
 
     @GetMapping("/edit/{id}")

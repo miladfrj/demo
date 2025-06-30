@@ -14,8 +14,8 @@ public class PersonMapper {
 
         return PersonDTO.builder()
                 .id(person.getId())
-                .username(person.getUsername())
-                .password(person.getPassword())
+               // .username(person.getUsername())
+               // .password(person.getPassword())
                 .firstName(person.getFirstName())
                 .lastName(person.getLastName())
                 .email(person.getEmail())
@@ -34,8 +34,8 @@ public class PersonMapper {
 
         Person person = Person.builder()
                 .id(dto.getId())
-                .username(dto.getUsername())
-                .password(dto.getPassword())
+                //.username(dto.getUsername())
+               // .password(dto.getPassword())
                 .firstName(dto.getFirstName())
                 .lastName(dto.getLastName())
                 .email(dto.getEmail())

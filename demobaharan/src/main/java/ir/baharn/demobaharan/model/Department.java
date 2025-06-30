@@ -18,4 +18,5 @@ import lombok.Setter;
 public class Department extends BaseModel {
     @Column(nullable = false , unique = true)
     private String title;
+
 }
