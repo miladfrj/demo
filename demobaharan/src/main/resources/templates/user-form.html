@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>ایجاد کاربر</title>
+    <style>
+        body {
+            font-family: Tahoma, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            direction: rtl;
+        }
+
+        form {
+            background: white;
+            padding: 25px 35px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #007bff;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            text-align: center;
+            color: #007bff;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+
+<form th:action="@{/users/new}" method="post">
+    <h2>ایجاد کاربر جدید</h2>
+
+    <label>نام کاربری:</label>
+    <input type="text" name="username" required />
+
+    <label>رمز عبور:</label>
+    <input type="password" name="password" required />
+
+    <label>انتخاب فرد:</label>
+    <select name="personId" required>
+        <option value="" disabled selected>انتخاب کنید</option>
+        <option th:each="p : ${persons}" th:value="${p.id}" th:text="${p.firstName + ' ' + p.lastName}"></option>
+    </select>
+
+    <button type="submit">ذخیره</button>
+    <a th:href="@{/users/list}">بازگشت به لیست</a>
+</form>
+
+</body>
+</html>

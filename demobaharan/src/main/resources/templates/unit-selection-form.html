@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Tahoma;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            direction: rtl;
+        }
+
+        form {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #388e3c;
+        }
+    </style>
+    <title>انتخاب واحد</title>
+
+</head>
+<body>
+<h2>انتخاب واحد برای <span th:text="${student.person.firstName + ' ' + student.person.lastName}"></span></h2>
+
+<form th:action="@{/unit-selection}" th:object="${unitSelection}" method="post">
+    <input type="hidden" th:field="*{student.id}" th:value="${student.id}"/>
+    <div>
+        <label>درس:</label>
+        <select th:field="*{course.id}" required>
+            <option th:each="c : ${courses}" th:value="${c.id}"
+                    th:text="${c.name + ' - ' + c.teacher.person.firstName + ' ' + c.teacher.person.lastName}"></option>
+        </select>
+    </div>
+    <div>
+        <label>ترم:</label>
+        <select th:field="*{duration}" required>
+            <option th:each="s : ${T(ir.baharn.demobaharan.model.Semester).values()}" th:value="${s}" th:text="${s.title}"></option>
+        </select>
+    </div>
+    <button type="submit">انتخاب</button>
+</form>
+
+</body>
+</html>

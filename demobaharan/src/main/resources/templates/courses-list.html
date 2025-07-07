@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fa" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>لیست دروس</title>
+  <style>
+    body { font-family: Tahoma; background: #f2f2f2; direction: rtl; padding: 20px; }
+    table { width: 80%; margin: 0 auto; border-collapse: collapse; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    th, td { padding: 12px; border: 1px solid #ddd; text-align: center; }
+    th { background: #4CAF50; color: white; }
+    a.btn { background: #4CAF50; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; margin: 2px; }
+  </style>
+</head>
+<body>
+<h2 style="text-align: center">لیست دروس</h2>
+
+<div style="text-align: center; margin-bottom: 20px;">
+  <a class="btn" th:href="@{/courses/new}">افزودن درس جدید</a>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th>کد درس</th>
+    <th>نام درس</th>
+    <th>ترم</th>
+    <th>استاد</th>
+    <th>عملیات</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="course : ${courses}">
+    <td th:text="${course.courseCode}"></td>
+    <td th:text="${course.name}"></td>
+    <td th:text="${course.duration.title}"></td>
+    <td th:text="${course.teacher.person.firstName + ' ' + course.teacher.person.lastName}"></td>
+    <td>
+      <a th:href="@{/courses/delete/{id}(id=${course.id})}">حذف</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
