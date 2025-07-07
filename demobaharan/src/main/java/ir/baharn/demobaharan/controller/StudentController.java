@@ -33,14 +33,17 @@ public class StudentController {
     }
 
     @PostMapping
-    public String save(@RequestParam("personId") Long personId, @RequestParam("studentCode") String studentCode) {
+    public String save(@RequestParam("personId") Long personId,
+                       @RequestParam("studentCode") String studentCode,
+                       @RequestParam("proMajor") String proMajor) {
         Person person = personService.getEntityById(personId);
-        if (person != null) {
-            Student student = new Student();
-            student.setPerson(person);
-            student.setStudentCode(studentCode);
-            studentService.save(student);
-        }
+
+        Student student = new Student();
+        student.setPerson(person);
+        student.setStudentCode(studentCode);
+        student.setProMajor(proMajor);
+        studentService.save(student);
+
         return "redirect:/students";
     }
 

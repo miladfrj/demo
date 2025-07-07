@@ -16,7 +16,7 @@ public class ImplTeacherService implements TeacherService {
 
     @Override
     public List<Teacher> getAll() {
-        return teacherRepository.findAllWithPerson();
+        return teacherRepository.getAllCustom();
     }
 
     @Override

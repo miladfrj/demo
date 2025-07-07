@@ -24,6 +24,7 @@ public class PersonMapper {
                 .personnelCode(person.getPersonnelCode())
                 .birthDate(person.getBirthDate())
                 .departmentTitle(person.getDepartment() != null ? person.getDepartment().getTitle() : null)
+                .lastDegree(person.getLastDegree())
                 .build();
 
     }
@@ -43,6 +44,7 @@ public class PersonMapper {
                 .location(dto.getLocation())
                 .personnelCode(dto.getPersonnelCode())
                 .birthDate(dto.getBirthDate())
+                .lastDegree(dto.getLastDegree())
                 .build();
 
         if (dto.getDepartmentId() != null) {

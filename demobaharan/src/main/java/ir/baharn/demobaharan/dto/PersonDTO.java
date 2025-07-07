@@ -22,5 +22,6 @@ public class PersonDTO {
     private Date birthDate;
     private Long departmentId;
     private String departmentTitle;
-
+    private String role;
+    private String lastDegree;
 }

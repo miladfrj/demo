@@ -13,4 +13,7 @@ public interface PersonService {
     void delete(Long id);
 
     Person getEntityById(Long id);
+    String getPersonRole(Person person);
+
+    String getPersonRole(PersonDTO personDTO);
 }

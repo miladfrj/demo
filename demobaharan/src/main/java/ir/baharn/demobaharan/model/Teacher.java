@@ -1,10 +1,10 @@
 package ir.baharn.demobaharan.model;
 
 import ir.baharn.demobaharan.model.base.BaseModel;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "teacher")
@@ -12,28 +12,20 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//@Builder
+@Builder
 public class Teacher extends BaseModel {
 
+    @Column(nullable = false)
     private String teacherCode;
+    @Column(nullable = false)
+    private String proMajor;
 
     @ManyToOne
     private Person person;
 
-    public String getTeacherCode() {
-        return teacherCode;
-    }
+    @OneToMany(mappedBy = "teacher")
+    private List<Course> courses;
 
-    public void setTeacherCode(String teacherCode) {
-        this.teacherCode = teacherCode;
-    }
 
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
 }
 

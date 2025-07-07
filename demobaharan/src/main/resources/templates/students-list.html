@@ -22,6 +22,7 @@
         <th>کد دانشجویی</th>
         <th>نام</th>
         <th>نام خانوادگی</th>
+        <th>رشته تحصیلی</th>
         <th>عملیات</th>
     </tr>
     </thead>
@@ -31,6 +32,7 @@
         <td th:text="${student.studentCode}"></td>
         <td th:text="${student.person.firstName}"></td>
         <td th:text="${student.person.lastName}"></td>
+        <td th:text="${student.proMajor}"></td>
         <td>
             <a th:href="@{/students/delete/{id}(id=${student.id})}" class="btn" onclick="return confirm('حذف شود؟')">حذف</a>
         </td>

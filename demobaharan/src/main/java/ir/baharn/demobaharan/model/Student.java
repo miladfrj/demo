@@ -1,9 +1,7 @@
 package ir.baharn.demobaharan.model;
 
 import ir.baharn.demobaharan.model.base.BaseModel;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -12,27 +10,15 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//@Builder
+@Builder
 public class Student extends BaseModel {
 
+    @Column(nullable = false)
     private String studentCode;
+    @Column(nullable = false)
+    private String proMajor;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Person person;
 
-    public String getStudentCode() {
-        return studentCode;
-    }
-
-    public void setStudentCode(String studentCode) {
-        this.studentCode = studentCode;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
 }

@@ -97,10 +97,15 @@
         <label>تاریخ تولد:</label>
         <input type="date" name="birthDate" th:value="${#dates.format(person.birthDate, 'yyyy-MM-dd')}" required />
 
+        <label>اخرین مدرک تخصیلی:</label>
+        <input type="text" name="lastDegree" th:value="${person.lastDegree}" required>
+
         <label>رده:</label>
         <select name="departmentId" required>
             <option th:each="dept : ${departments}" th:value="${dept.id}" th:text="${dept.title}"></option>
         </select>
+
+
 
         <button type="submit">ذخیره</button>
     </form>

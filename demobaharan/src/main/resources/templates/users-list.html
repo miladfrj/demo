@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <style>
         body { font-family: Tahoma; background: #f2f2f2; direction: rtl; padding: 20px; }
-        table { width: 80%; margin: 0 auto; border-collapse: collapse; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        th, td { padding: 12px; border: 1px solid #ddd; text-align: center; }
+        table { width: 90%; margin: 0 auto; border-collapse: collapse; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: center; }
         th { background: #4CAF50; color: white; }
         a.btn { background: #4CAF50; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; margin: 2px; }
     </style>
@@ -19,7 +19,12 @@
     <tr>
         <th>شناسه</th>
         <th>نام کاربری</th>
-        <th>نقش</th>
+        <th>نام</th>
+        <th>نام خانوادگی</th>
+        <th>ایمیل</th>
+        <th>کد ملی</th>
+        <th>محل سکونت</th>
+        <th>کد پرسنلی</th>
         <th>عملیات</th>
     </tr>
     </thead>
@@ -27,9 +32,14 @@
     <tr th:each="user : ${users}">
         <td th:text="${user.id}"></td>
         <td th:text="${user.username}"></td>
-        <td th:text="${user.role}"></td>
+        <td th:text="${user.person.firstName}"></td>
+        <td th:text="${user.person.lastName}"></td>
+        <td th:text="${user.person.email}"></td>
+        <td th:text="${user.person.nationalCode}"></td>
+        <td th:text="${user.person.location}"></td>
+        <td th:text="${user.person.personnelCode}"></td>
         <td>
-            <a th:href="@{'/users/role/' + ${user.id}}">تعیین نقش</a>
+            <a class="btn" th:href="@{'/users/delete/' + ${user.id}}">حذف</a>
         </td>
     </tr>
     </tbody>

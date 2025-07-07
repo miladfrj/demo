@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/persons")
 public class PersonController {
@@ -20,9 +22,17 @@ public class PersonController {
 
     @GetMapping
     public String list(Model model) {
-        model.addAttribute("persons", personService.getAll());
+        List<PersonDTO> persons = personService.getAll();
+
+        for (PersonDTO person : persons) {
+            String role = personService.getPersonRole(person);
+            person.setRole(role);
+        }
+
+        model.addAttribute("persons", persons);
         return "persons-list";
     }
+
 
     @GetMapping("/new")
     public String createForm(Model model) {

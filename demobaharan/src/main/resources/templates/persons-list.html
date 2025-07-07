@@ -43,6 +43,8 @@
         <th>کد پرسنلی</th>
         <th>تاریخ تولد</th>
         <th>رده</th>
+        <th>نقش</th>
+        <th>اخرین مدرک تحصیلی</th>
         <th>عملیات</th>
     </tr>
     </thead>
@@ -57,6 +59,8 @@
         <td th:text="${person.personnelCode}"></td>
         <td th:text="${#dates.format(person.birthDate, 'yyyy-MM-dd')}"></td>
         <td th:text="${person.departmentTitle}"></td>
+        <td th:text="${person.role}"></td>
+        <td th:text="${person.lastDegree}"></td>
         <td>
             <a th:href="@{/persons/edit/{id}(id=${person.id})}" class="btn">ویرایش</a>
             <a th:href="@{/persons/delete/{id}(id=${person.id})}" class="btn" onclick="return confirm('آیا حذف شود؟')">حذف</a>

@@ -34,12 +34,15 @@ public class TeacherController {
 
 
     @PostMapping
-    public String save(@RequestParam("personId") Long personId, @RequestParam("teacherCode") String teacherCode) {
+    public String save(@RequestParam("personId") Long personId,
+                       @RequestParam("teacherCode") String teacherCode,
+                       @RequestParam("proMajor") String proMajor) {
         Person person = personService.getEntityById(personId);
         if (person != null) {
             Teacher teacher = new Teacher();
             teacher.setPerson(person);
             teacher.setTeacherCode(teacherCode);
+            teacher.setProMajor(proMajor);
             teacherService.save(teacher);
         }
         return "redirect:/teachers";

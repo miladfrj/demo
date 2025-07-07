@@ -4,6 +4,8 @@ import ir.baharn.demobaharan.dto.PersonDTO;
 import ir.baharn.demobaharan.mapper.PersonMapper;
 import ir.baharn.demobaharan.model.Person;
 import ir.baharn.demobaharan.repository.PersonRepository;
+import ir.baharn.demobaharan.repository.StudentRepository;
+import ir.baharn.demobaharan.repository.TeacherRepository;
 import ir.baharn.demobaharan.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,13 +22,24 @@ public class ImplPersonService implements PersonService {
     @Autowired
     private PersonMapper personMapper;
 
+    @Autowired
+    private TeacherRepository teacherRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
+
     @Override
     public List<PersonDTO> getAll() {
         return personRepository.findAll()
                 .stream()
-                .map(personMapper::toDto)
+                .map(person -> {
+                    PersonDTO dto = personMapper.toDto(person);
+                    dto.setRole(getPersonRole(person));
+                    return dto;
+                })
                 .collect(Collectors.toList());
     }
+
 
     @Override
     public PersonDTO getById(Long id) {
@@ -74,6 +87,23 @@ public class ImplPersonService implements PersonService {
         return personRepository.findById(id).orElse(null);
     }
 
+
+    @Override
+    public String getPersonRole(Person person){
+        if(studentRepository.existsByPerson(person)){
+            return "دانشجو";
+        } else if (teacherRepository.existsByPerson(person)) {
+            return "استاد";
+        }
+        else return "بدون نقش";
+    }
+
+    @Override
+    public String getPersonRole(PersonDTO personDTO){
+        Person person = personRepository.findById(personDTO.getId())
+                .orElseThrow(() -> new RuntimeException("فرد پیدا نشد"));
+        return getPersonRole(person);
+    }
 
 
 }

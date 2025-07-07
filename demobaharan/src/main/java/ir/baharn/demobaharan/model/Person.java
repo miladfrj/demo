@@ -31,8 +31,9 @@ public class Person extends BaseModel {
     private String personnelCode;
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
-
     private Date birthDate;
+    @Column(nullable = false)
+    private String lastDegree;
 
     @ManyToOne
     @JoinColumn(name = "department_id")

@@ -21,6 +21,7 @@
         <th>کد استاد</th>
         <th>نام</th>
         <th>نام خانوادگی</th>
+        <th>رشته تخصصی</th>
         <th>عملیات</th>
     </tr>
     </thead>
@@ -30,6 +31,8 @@
         <td th:text="${teacher.teacherCode}"></td>
         <td th:text="${teacher.person.firstName}"></td>
         <td th:text="${teacher.person.lastName}"></td>
+        <td th:text="${teacher.proMajor}"></td>
+
         <td>
             <a th:href="@{/teachers/delete/{id}(id=${teacher.id})}" class="btn" onclick="return confirm('حذف شود؟')">حذف</a>
         </td>

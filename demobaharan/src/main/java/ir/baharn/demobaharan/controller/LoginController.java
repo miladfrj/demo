@@ -28,7 +28,7 @@ public class LoginController {
         User user = userService.login(username, password);
 
         if (user != null) {
-            return "redirect:/role-selection";
+            return "redirect:/users/list";
         } else {
             model.addAttribute("error", "نام کاربری یا رمز عبور اشتباه است");
             return "login";
