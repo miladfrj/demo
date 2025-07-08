@@ -52,25 +52,26 @@
 
 </head>
 <body>
+<!--
 <h2>انتخاب واحد برای <span th:text="${student.person.firstName + ' ' + student.person.lastName}"></span></h2>
+-->
 
-<form th:action="@{/unit-selection}" th:object="${unitSelection}" method="post">
-    <input type="hidden" th:field="*{student.id}" th:value="${student.id}"/>
-    <div>
-        <label>درس:</label>
-        <select th:field="*{course.id}" required>
-            <option th:each="c : ${courses}" th:value="${c.id}"
-                    th:text="${c.name + ' - ' + c.teacher.person.firstName + ' ' + c.teacher.person.lastName}"></option>
-        </select>
-    </div>
-    <div>
-        <label>ترم:</label>
-        <select th:field="*{duration}" required>
-            <option th:each="s : ${T(ir.baharn.demobaharan.model.Semester).values()}" th:value="${s}" th:text="${s.title}"></option>
-        </select>
-    </div>
-    <button type="submit">انتخاب</button>
+<form th:action="@{/unit-selection/save}" th:object="${unitSelection}" method="post">
+    <label>Student:</label>
+    <select th:field="*{student.id}">
+        <option th:each="s : ${students}" th:value="${s.id}" th:text="${s.person.firstName + ' ' + s.person.lastName}"></option>
+    </select>
+
+    <label>Course - Teacher - Semester:</label>
+    <select th:field="*{universityDuration.id}">
+        <option th:each="d : ${durations}"
+                th:value="${d.id}"
+                th:text="${d.course.name + ' - ' + d.teacher.person.firstName + ' - ' + d.duration.title}"></option>
+    </select>
+
+    <button type="submit">Save</button>
 </form>
+
 
 </body>
 </html>

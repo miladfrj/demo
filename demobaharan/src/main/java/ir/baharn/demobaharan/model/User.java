@@ -19,7 +19,11 @@ public class User extends BaseModel {
     @Column(nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "person_id")
     private Person person;
+
 }

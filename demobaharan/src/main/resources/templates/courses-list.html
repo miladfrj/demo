@@ -23,8 +23,7 @@
   <tr>
     <th>کد درس</th>
     <th>نام درس</th>
-    <th>ترم</th>
-    <th>استاد</th>
+    <th>تعداد واحد</th>
     <th>عملیات</th>
   </tr>
   </thead>
@@ -32,8 +31,7 @@
   <tr th:each="course : ${courses}">
     <td th:text="${course.courseCode}"></td>
     <td th:text="${course.name}"></td>
-    <td th:text="${course.duration.title}"></td>
-    <td th:text="${course.teacher.person.firstName + ' ' + course.teacher.person.lastName}"></td>
+    <td th:text="${course.unitCount}"></td>
     <td>
       <a th:href="@{/courses/delete/{id}(id=${course.id})}">حذف</a>
     </td>

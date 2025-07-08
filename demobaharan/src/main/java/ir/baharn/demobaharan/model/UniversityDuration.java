@@ -1,10 +1,7 @@
 package ir.baharn.demobaharan.model;
 
 import ir.baharn.demobaharan.model.base.BaseModel;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -16,6 +13,7 @@ import lombok.*;
 public class UniversityDuration extends BaseModel {
 
 
+    @Enumerated(EnumType.STRING)
     private Duration duration;
 
     @ManyToOne

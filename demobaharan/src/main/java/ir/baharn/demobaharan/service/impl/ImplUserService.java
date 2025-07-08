@@ -21,15 +21,12 @@ public class ImplUserService implements UserService {
 
     @Override
     public User login(String username, String password){
-        return userRepository.findByUsernameAndPassword(username , password);
+        return (User) userRepository.findByUsernameAndPassword(username , password);
     }
 
     @Override
     public User save(User user) {
 
-        if (userRepository.existsByUsername(user.getUsername())) {
-            throw new RuntimeException("نام کاربری تکراری است");
-        }
         return userRepository.save(user);
     }
 

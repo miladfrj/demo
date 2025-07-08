@@ -6,6 +6,9 @@ import java.util.List;
 
 public interface UnitSelectionService {
 
-    List<UnitSelection> getAll();
-    UnitSelection save(UnitSelection unitSelection);
+    UnitSelection save(UnitSelection selection);
+
+    List<UnitSelection> findAll();
+
+    List<UnitSelection> getSelectionsByStudent(Long studentId);
 }

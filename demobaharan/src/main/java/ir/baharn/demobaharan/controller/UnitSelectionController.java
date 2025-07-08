@@ -1,10 +1,9 @@
 package ir.baharn.demobaharan.controller;
 
-import ir.baharn.demobaharan.model.Student;
 import ir.baharn.demobaharan.model.UnitSelection;
-import ir.baharn.demobaharan.service.CourseService;
 import ir.baharn.demobaharan.service.StudentService;
 import ir.baharn.demobaharan.service.UnitSelectionService;
+import ir.baharn.demobaharan.service.UniversityDurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,31 +19,29 @@ import java.util.List;
 public class UnitSelectionController {
 
     @Autowired
-    private UnitSelectionService unitSelectionService;
-
+    private  UnitSelectionService unitSelectionService;
     @Autowired
-    private CourseService courseService;
-
+    private  StudentService studentService;
     @Autowired
-    private StudentService studentService;
+    private UniversityDurationService universityDurationService;
 
-    @GetMapping
-    public String showSelectionForm(Model model) {
-        List<Student> students = studentService.getAll();
-        if(students.isEmpty()){
-            return "redirect:/students/new";
-        }
-        Student student = students.get(0);
-
-        model.addAttribute("student", student);
-        model.addAttribute("courses", courseService.getAll());
+    @GetMapping("/form")
+    public String showForm(Model model) {
         model.addAttribute("unitSelection", new UnitSelection());
+        model.addAttribute("students", studentService.getAll());
+        model.addAttribute("durations", universityDurationService.getAll());
         return "unit-selection-form";
     }
 
-    @PostMapping
-    public String selectUnit(@ModelAttribute UnitSelection unitSelection) {
+    @PostMapping("/save")
+    public String save(@ModelAttribute UnitSelection unitSelection) {
         unitSelectionService.save(unitSelection);
-        return "redirect:/unit-selection";
+        return "redirect:/unit-selection/list";
+    }
+
+    @GetMapping("/list")
+    public String list(Model model) {
+        model.addAttribute("selections", unitSelectionService.findAll());
+        return "unit-selection-list";
     }
 }

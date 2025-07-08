@@ -9,13 +9,22 @@
         h1 { color: #333; margin-bottom: 30px; }
         .btn { display: inline-block; background-color: #4CAF50; color: white; padding: 15px 30px; margin: 10px; font-size: 18px; text-decoration: none; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s; }
         .btn:hover { background-color: #45a049; }
+        select { padding: 10px; font-size: 16px; }
     </style>
 </head>
 <body>
 <div class="container">
     <h1>انتخاب نقش</h1>
-    <a th:href="@{/students/new}" class="btn"> دانشجو</a>
-    <a th:href="@{/teachers/new}" class="btn"> استاد</a>
+    <form action="/select-role" method="post">
+        <select name="userId">
+            <th:block th:each="user : ${users}">
+                <option th:value="${user.id}"
+                        th:text="${user.role} + ' - ' + ${user.person.department.title}"></option>
+            </th:block>
+        </select>
+        <br/><br/>
+        <button type="submit" class="btn">تایید</button>
+    </form>
 </div>
 </body>
 </html>

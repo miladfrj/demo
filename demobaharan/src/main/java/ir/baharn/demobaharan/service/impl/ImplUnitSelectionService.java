@@ -15,12 +15,16 @@ public class ImplUnitSelectionService implements UnitSelectionService {
     private UnitSelectionRepository unitSelectionRepository;
 
     @Override
-    public List<UnitSelection> getAll() {
+    public UnitSelection save(UnitSelection selection) {
+        return unitSelectionRepository.save(selection);
+    }
+    @Override
+    public List<UnitSelection> findAll() {
         return unitSelectionRepository.findAll();
     }
 
     @Override
-    public UnitSelection save(UnitSelection unitSelection) {
-        return unitSelectionRepository.save(unitSelection);
+    public List<UnitSelection> getSelectionsByStudent(Long studentId) {
+        return unitSelectionRepository.findByStudent_id(studentId);
     }
 }
