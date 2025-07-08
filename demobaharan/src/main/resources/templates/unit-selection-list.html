@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    body { font-family: Tahoma; background: #f2f2f2; direction: rtl; padding: 20px; }
+    table { width: 80%; margin: 0 auto; border-collapse: collapse; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    th, td { padding: 12px; border: 1px solid #ddd; text-align: center; }
+    th { background: #4CAF50; color: white; }
+    a.btn { background: #4CAF50; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; margin: 2px; }
+  </style>
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>دانشجو</th>
+    <th>درس</th>
+    <th>استاد</th>
+    <th>ترم</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="s : ${selections}">
+    <td th:text="${s.student.person.firstName + ' ' + s.student.person.lastName}"></td>
+    <td th:text="${s.universityDuration.course.name}"></td>
+    <td th:text="${s.universityDuration.teacher.person.firstName + ' ' + s.universityDuration.teacher.person.lastName}"></td>
+    <td th:text="${s.universityDuration.duration}"></td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

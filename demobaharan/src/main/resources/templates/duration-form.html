@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fa" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ایجاد درس جدید</title>
+  <style>
+    body {
+      font-family: Tahoma;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      direction: rtl;
+    }
+
+    form {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #388e3c;
+    }
+  </style>
+</head>
+<body>
+<form th:action="@{/university-duration/save}" th:object="${duration}" method="post">
+  <label>Term (Duration):</label>
+  <select th:field="*{duration}">
+    <option th:each="d : ${T(ir.baharn.demobaharan.model.Duration).values()}"
+            th:value="${d}"
+            th:text="${d.title}"></option>
+  </select>
+
+  <label>Course:</label>
+  <select th:field="*{course.id}">
+    <option th:each="c : ${courses}" th:value="${c.id}" th:text="${c.name}"></option>
+  </select>
+
+  <label>Teacher:</label>
+  <select th:field="*{teacher.id}">
+    <option th:each="t : ${teachers}" th:value="${t.id}" th:text="${t.person.firstName + ' ' + t.person.lastName}"></option>
+  </select>
+
+  <button type="submit">Save</button>
+</form>
+
+</body>
+</html>
+
