@@ -20,9 +20,5 @@ public class Course extends BaseModel {
     @Column(nullable = false)
     private String courseCode;
 
-    @ManyToOne
-    private Teacher teacher;
 
-    @Enumerated(EnumType.STRING)
-    private Duration duration;
 }

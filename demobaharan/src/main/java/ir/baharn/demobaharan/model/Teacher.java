@@ -23,9 +23,6 @@ public class Teacher extends BaseModel {
     @ManyToOne
     private Person person;
 
-    @OneToMany(mappedBy = "teacher")
-    private List<Course> courses;
-
 
 }
 
