@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ImplUserService implements UserService {
@@ -20,8 +21,8 @@ public class ImplUserService implements UserService {
     }
 
     @Override
-    public User login(String username, String password){
-        return (User) userRepository.findByUsernameAndPassword(username , password);
+    public Optional<User> login(String username, String password){
+        return Optional.ofNullable(userRepository.findByUsernameAndPassword(username, password).orElse(null));
     }
 
     @Override

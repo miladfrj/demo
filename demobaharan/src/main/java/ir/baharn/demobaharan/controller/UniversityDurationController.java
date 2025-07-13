@@ -6,7 +6,6 @@ import ir.baharn.demobaharan.service.CourseService;
 import ir.baharn.demobaharan.service.TeacherService;
 import ir.baharn.demobaharan.service.UniversityDurationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +26,7 @@ public class UniversityDurationController {
     @Autowired
     TeacherService teacherService;
 
-    @PreAuthorize("hasRole('STUDENT')")
+   // @PreAuthorize("hasRole('STUDENT')")
     @GetMapping("/form")
     public String form(Model model) {
         model.addAttribute("duration", new UniversityDuration());
@@ -36,14 +35,14 @@ public class UniversityDurationController {
         return "duration-form";
     }
 
-    @PreAuthorize("hasRole('STUDENT')")
+   // @PreAuthorize("hasRole('STUDENT')")
     @PostMapping("/save")
     public String save(@ModelAttribute UniversityDuration universityDuration) {
         universityDurationService.save(universityDuration);
         return "redirect:/university-duration/list";
     }
 
-    @PreAuthorize("hasRole('STUDENT')")
+   // @PreAuthorize("hasRole('STUDENT')")
     @GetMapping("/list")
     public String list(Model model) {
         model.addAttribute("durations", universityDurationService.getAll());

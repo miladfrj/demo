@@ -1,3 +1,4 @@
+/*
 
 package ir.baharn.demobaharan.config;
 
@@ -23,7 +24,7 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/home", true)
+                        .defaultSuccessUrl("/home.html", true)
                         .failureUrl("/login?error")
                         .permitAll()
                 )
@@ -34,4 +35,4 @@ public class SecurityConfig {
                 );
         return http.build();
     }
-}
+}*/

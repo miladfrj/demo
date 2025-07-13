@@ -18,5 +18,4 @@ public class UnitSelection extends BaseModel {
 
     @ManyToOne
     private UniversityDuration universityDuration;
-
 }

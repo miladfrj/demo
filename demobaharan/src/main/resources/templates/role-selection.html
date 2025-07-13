@@ -16,14 +16,15 @@
 <div class="container">
     <h1>انتخاب نقش</h1>
     <form action="/select-role" method="post">
-        <select name="userId">
+        <select name="userId" required>
+            <option value="" disabled selected>انتخاب نقش کنید</option>
             <th:block th:each="user : ${users}">
                 <option th:value="${user.id}"
-                        th:text="${user.role} + ' - ' + ${user.person.department.title}"></option>
+                        th:text="${user.role} + ' - ' + ${user.person.firstName + ' ' + user.person.lastName} + ' (' + ${user.person.department.title} + ')'"></option>
             </th:block>
         </select>
-        <br/><br/>
-        <button type="submit" class="btn">تایید</button>
+        <br/>
+        <button type="submit" class="btn">ورود به سیستم</button>
     </form>
 </div>
 </body>

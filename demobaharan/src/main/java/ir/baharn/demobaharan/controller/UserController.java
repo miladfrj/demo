@@ -1,6 +1,7 @@
 package ir.baharn.demobaharan.controller;
 
-import ir.baharn.demobaharan.model.User;
+import ir.baharn.demobaharan.model.*;
+
 import ir.baharn.demobaharan.service.PersonService;
 import ir.baharn.demobaharan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +34,29 @@ public class UserController {
     @PostMapping("/new")
     public String saveUser(@RequestParam String username,
                            @RequestParam String password,
-                           @RequestParam Long personId) {
+                           @RequestParam Long personId, @RequestParam(required = false) String role) {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
         user.setPerson(personService.getEntityById(personId));
+        if (role != null && !role.isEmpty()) {
+            user.setRole(Role.valueOf(role));
+        } else {
+
+            String personRole = personService.getPersonRole(user.getPerson());
+            switch (personRole) {
+                case "STUDENT":
+                    user.setRole(Role.STUDENT);
+                    break;
+                case "TEACHER":
+                    user.setRole(Role.TEACHER);
+                    break;
+                default:
+                    user.setRole(Role.ADMIN);
+                    break;
+            }
+        }
+
         userService.save(user);
         return "redirect:/users/list";
     }

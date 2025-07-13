@@ -22,7 +22,5 @@ public class Teacher extends BaseModel {
 
     @ManyToOne
     private Person person;
-
-
 }
 
