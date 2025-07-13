@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fa" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>خانه</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: "Tahoma", sans-serif;
+            direction: rtl;
+            background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 400px;
+            background: #ffffff;
+            padding: 30px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h2 {
+            color: #388e3c;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #555;
+            font-size: 16px;
+        }
+
+        a.logout {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 16px;
+            background: #d32f2f;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+
+        a.logout:hover {
+            background: #b71c1c;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>به سیستم دانشگاه خوش آمدید!</h2>
+    <p th:text="'کاربر عزیز، ' + ${session.user.person.firstName} + ' ' + ${session.user.person.lastName} + ' خوش آمدید.'"></p>
+
+    <a href="/logout" class="logout">خروج از سیستم</a>
+</div>
+</body>
+</html>
