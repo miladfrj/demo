@@ -16,13 +16,16 @@ public class ImplDepartmentService implements DepartmentService {
 
     @Override
     public List<Department> getAll() {
-        return departmentRepository.findAll();
+        return departmentRepository.findAllDepartments();
     }
 
     @Override
     public Department getById(Long id) {
-        return departmentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("دپارتمان یافت نشد!"));
+        Department department = departmentRepository.findDepartmentById(id);
+        if (department == null) {
+            throw new RuntimeException("دپارتمان یافت نشد!");
+        }
+        return department;
     }
 
     @Override

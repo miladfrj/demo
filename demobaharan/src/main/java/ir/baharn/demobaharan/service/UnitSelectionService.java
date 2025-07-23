@@ -11,4 +11,8 @@ public interface UnitSelectionService {
     List<UnitSelection> findAll();
 
     List<UnitSelection> getSelectionsByStudent(Long studentId);
+
+    void saveByUsername(String username, UnitSelection unitSelection);
+
+    Object getSelectionsByTeacherUsername(String username);
 }

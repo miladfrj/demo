@@ -4,10 +4,12 @@ import ir.baharn.demobaharan.dto.PersonDTO;
 import ir.baharn.demobaharan.service.DepartmentService;
 import ir.baharn.demobaharan.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -21,21 +23,19 @@ public class PersonController {
     private DepartmentService departmentService;
 
     @GetMapping
-    public String list(Model model) {
-        List<PersonDTO> persons = personService.getAll();
-
-        for (PersonDTO person : persons) {
-            String role = personService.getPersonRole(person);
-            person.setRole(role);
-        }
-
-        model.addAttribute("persons", persons);
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public String list(Model model, Principal principal) {
+        model.addAttribute("username", principal.getName());
+        model.addAttribute("persons", personService.getAll());
         return "persons-list";
     }
 
 
+
     @GetMapping("/new")
-    public String createForm(Model model) {
+    @PreAuthorize("hasRole('ADMIN')")
+    public String createForm(Model model , Principal principal) {
+        model.addAttribute("username", principal.getName());
         model.addAttribute("person", new PersonDTO());
         model.addAttribute("departments", departmentService.getAll());
         model.addAttribute("isEdit", false);
@@ -43,12 +43,14 @@ public class PersonController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public String save(@ModelAttribute("person") PersonDTO person) {
         personService.save(person);
-        return "redirect:/role-selection";
+        return "redirect:/persons";
     }
 
     @GetMapping("/edit/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String editForm(@PathVariable Long id, Model model) {
         model.addAttribute("person", personService.getById(id));
         model.addAttribute("departments", departmentService.getAll());
@@ -57,12 +59,14 @@ public class PersonController {
     }
 
     @PostMapping("/update")
+    @PreAuthorize("hasRole('ADMIN')")
     public String update(@ModelAttribute("person") PersonDTO person) {
         personService.update(person);
         return "redirect:/persons";
     }
 
     @GetMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String delete(@PathVariable Long id) {
         personService.delete(id);
         return "redirect:/persons";

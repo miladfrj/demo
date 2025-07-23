@@ -7,8 +7,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 @SpringBootApplication
 public class DemobaharanApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DemobaharanApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DemobaharanApplication.class, args);
+    }
 
 }

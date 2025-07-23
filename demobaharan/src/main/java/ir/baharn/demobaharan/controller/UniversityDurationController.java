@@ -1,6 +1,5 @@
 package ir.baharn.demobaharan.controller;
 
-import ir.baharn.demobaharan.model.Teacher;
 import ir.baharn.demobaharan.model.UniversityDuration;
 import ir.baharn.demobaharan.service.CourseService;
 import ir.baharn.demobaharan.service.TeacherService;

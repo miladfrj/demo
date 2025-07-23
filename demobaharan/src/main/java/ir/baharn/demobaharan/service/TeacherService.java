@@ -8,4 +8,6 @@ public interface TeacherService {
     List<Teacher> getAll();
     Teacher save(Teacher teacher);
     void delete(Long id);
+    void saveWithPerson(Long personId, String teacherCode);
+
 }

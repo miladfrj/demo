@@ -16,13 +16,16 @@ public class ImplCourseService implements CourseService {
 
     @Override
     public List<Course> getAll() {
-        return courseRepository.findAll();
+        return courseRepository.findAllCourses();
     }
 
     @Override
     public Course getById(Long id) {
-        return courseRepository.findById(id).
-                orElseThrow(() -> new RuntimeException("درس مورد نظر پیدا نشد!"));
+        Course course = courseRepository.findCourseById(id);
+        if (course == null) {
+            throw new RuntimeException("دوره یافت نشد!");
+        }
+        return course;
     }
 
     @Override

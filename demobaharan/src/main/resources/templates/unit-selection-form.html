@@ -57,12 +57,12 @@
 -->
 
 <form th:action="@{/unit-selection/save}" th:object="${unitSelection}" method="post">
-    <label>Student:</label>
+    <label>دانشجو:</label>
     <select th:field="*{student.id}">
         <option th:each="s : ${students}" th:value="${s.id}" th:text="${s.person.firstName + ' ' + s.person.lastName}"></option>
     </select>
 
-    <label>Course - Teacher - Semester:</label>
+    <label>درس - دوره - استاد:</label>
     <select th:field="*{universityDuration.id}">
         <option th:each="d : ${durations}"
                 th:value="${d.id}"

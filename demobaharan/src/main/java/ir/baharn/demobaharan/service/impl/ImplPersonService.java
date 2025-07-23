@@ -3,6 +3,7 @@ package ir.baharn.demobaharan.service.impl;
 import ir.baharn.demobaharan.dto.PersonDTO;
 import ir.baharn.demobaharan.mapper.PersonMapper;
 import ir.baharn.demobaharan.model.Person;
+import ir.baharn.demobaharan.model.Role;
 import ir.baharn.demobaharan.repository.PersonRepository;
 import ir.baharn.demobaharan.repository.StudentRepository;
 import ir.baharn.demobaharan.repository.TeacherRepository;
@@ -30,11 +31,11 @@ public class ImplPersonService implements PersonService {
 
     @Override
     public List<PersonDTO> getAll() {
-        return personRepository.findAll()
+        return personRepository.findAllPersons()
                 .stream()
                 .map(person -> {
                     PersonDTO dto = personMapper.toDto(person);
-                    dto.setRole(getPersonRole(person));
+                    dto.setRole(getPersonRoleByEntity(person));
                     return dto;
                 })
                 .collect(Collectors.toList());
@@ -60,8 +61,6 @@ public class ImplPersonService implements PersonService {
         }
 
         return personRepository.findById(personDTO.getId()).map(existingPerson -> {
-                   // existingPerson.setUsername(personDTO.getUsername());
-                   // existingPerson.setPassword(personDTO.getPassword());
                     existingPerson.setFirstName(personDTO.getFirstName());
                     existingPerson.setLastName(personDTO.getLastName());
                     existingPerson.setEmail(personDTO.getEmail());
@@ -89,20 +88,48 @@ public class ImplPersonService implements PersonService {
 
 
     @Override
-    public String getPersonRole(Person person){
-        if(studentRepository.existsByPerson(person)){
-            return "دانشجو";
-        } else if (teacherRepository.existsByPerson(person)) {
-            return "استاد";
+    public List<PersonDTO> getPersonsByRole(Role role) {
+        switch (role) {
+            case STUDENT:
+                return getAllStudents();
+            case TEACHER:
+                return getAllTeachers();
+            default:
+                return getAll();
         }
-        else return "بدون نقش";
     }
 
     @Override
-    public String getPersonRole(PersonDTO personDTO){
-        Person person = personRepository.findById(personDTO.getId())
-                .orElseThrow(() -> new RuntimeException("فرد پیدا نشد"));
-        return getPersonRole(person);
+    public List<PersonDTO> getPersonsByRoleSafe(String roleParam) {
+        try {
+            Role role = Role.valueOf(roleParam);
+            return getPersonsByRole(role);
+        } catch (IllegalArgumentException | NullPointerException e) {
+            return getAll();
+        }
+    }
+
+
+    @Override
+    public String getPersonRoleByEntity(Person person) {
+        if (studentRepository.existsByPerson(person)) return "STUDENT";
+        if (teacherRepository.existsByPerson(person)) return "TEACHER";
+        return "ADMIN";
+    }
+
+
+    @Override
+    public List<PersonDTO> getAllStudents() {
+        return studentRepository.findAll().stream()
+                .map(student -> personMapper.toDto(student.getPerson()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<PersonDTO> getAllTeachers() {
+        return teacherRepository.findAll().stream()
+                .map(teacher -> personMapper.toDto(teacher.getPerson()))
+                .collect(Collectors.toList());
     }
 
 

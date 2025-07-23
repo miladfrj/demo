@@ -28,7 +28,8 @@
 
 <div class="top-bar">
     <a th:href="@{/logout}" class="btn">خروج</a>
-    <a th:href="@{/persons/new}" class="btn">افزودن فرد جدید</a>
+    <a th:href="@{/persons/new(username=${username})}" class="btn">افزودن فرد جدید</a>
+
 </div>
 
 <table>
