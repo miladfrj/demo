@@ -14,7 +14,7 @@
 </head>
 <body>
 <h2 style="text-align: center;">لیست دانشجویان</h2>
-<a th:href="@{/students/new}" class="btn">افزودن دانشجو</a>
+<a th:href="@{/students/new(username=${username})}" class="btn">افزودن دانشجو</a>
 <table>
     <thead>
     <tr>
@@ -34,8 +34,7 @@
         <td th:text="${student.person.lastName}"></td>
         <td th:text="${student.proMajor}"></td>
         <td>
-            <a th:href="@{/students/delete/{id}(id=${student.id})}" class="btn" onclick="return confirm('حذف شود؟')">حذف</a>
-        </td>
+            <a th:href="@{/students/delete/{id}(id=${student.id},username=${username})}" class="btn" ...>حذف</a>        </td>
     </tr>
     </tbody>
 </table>

@@ -76,18 +76,20 @@
 <body>
 <div class="container">
     <h2>ورود به سیستم</h2>
-    <form th:action="@{/login}" method="post" th:object="${user}">
+    <form th:action="@{/login}" method="post">
         <label>نام کاربری:</label>
-        <input type="text" th:field="*{username}" required />
+        <input type="text" name="username" required />
 
         <label>رمز عبور:</label>
-        <input type="password" th:field="*{password}" required />
+        <input type="password" name="password" required />
 
         <button type="submit">ورود</button>
     </form>
 
 
-    <p class="error-message" th:if="${error}" th:text="${error}"></p>
+    <p class="error-message" th:if="${param.error}">
+        نام کاربری یا رمز عبور نامعتبر است.
+    </p>
 </div>
 </body>
 </html>

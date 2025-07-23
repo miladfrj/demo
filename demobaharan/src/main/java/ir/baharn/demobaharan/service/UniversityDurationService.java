@@ -1,5 +1,6 @@
 package ir.baharn.demobaharan.service;
 
+import ir.baharn.demobaharan.model.UnitSelection;
 import ir.baharn.demobaharan.model.UniversityDuration;
 
 import java.util.List;
@@ -13,4 +14,7 @@ public interface UniversityDurationService {
     UniversityDuration findById(Long id);
 
     void deleteById(Long id);
+
+    UnitSelection saveByUsername(String username, UnitSelection selection);
+
 }

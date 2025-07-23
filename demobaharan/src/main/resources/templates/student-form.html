@@ -61,6 +61,7 @@
 <div class="container">
     <h2>افزودن دانشجو</h2>
     <form th:action="@{/students}" method="post">
+
         <label for="personId">انتخاب شخص:</label>
         <select id="personId" name="personId" required>
             <option th:each="person : ${persons}" th:value="${person.id}" th:text="${person.firstName + ' ' + person.lastName}"></option>

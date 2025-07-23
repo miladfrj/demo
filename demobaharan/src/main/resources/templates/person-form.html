@@ -76,6 +76,8 @@
     <h2 th:text="${isEdit} ? 'ویرایش اطلاعات فرد' : 'افزودن فرد جدید'"></h2>
 
     <form th:action="@{/persons}" method="post">
+        <input type="hidden" name="username" th:value="${username}" />
+
         <label>نام:</label>
         <input type="text" name="firstName" th:value="${person.firstName}" required />
 

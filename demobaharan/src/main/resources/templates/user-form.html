@@ -81,8 +81,20 @@
     <label>رمز عبور:</label>
     <input type="password" name="password" required />
 
+    <label>نقش کاربر:</label>
+    <select id="roleSelect" name="role" required>
+        <option value="" disabled selected>انتخاب نقش</option>
+        <option th:each="r : ${roles}" th:value="${r.name()}" th:text="${r.name()}"></option>
+
+      <!--  <option th:each="role : ${roles}"
+                th:text="${role.title}">
+               &lt;!&ndash; th:value="${role.index}"&ndash;&gt;
+
+        </option>-->
+    </select>
+
     <label>انتخاب فرد:</label>
-    <select name="personId" required>
+    <select id="personSelect" name="personId" required>
         <option value="" disabled selected>انتخاب کنید</option>
         <option th:each="p : ${persons}" th:value="${p.id}" th:text="${p.firstName + ' ' + p.lastName}"></option>
     </select>
@@ -90,6 +102,26 @@
     <button type="submit">ذخیره</button>
     <a th:href="@{/users/list}">بازگشت به لیست</a>
 </form>
+
+<script>
+    document.getElementById('roleSelect').addEventListener('change', function() {
+        var role = this.value;
+        fetch('/users/persons?role=' + role)
+            .then(response => response.json())
+            .then(data => {
+                var personSelect = document.getElementById('personSelect');
+                personSelect.innerHTML = '<option value="" disabled selected>انتخاب کنید</option>';
+                data.forEach(function(p) {
+                    var option = document.createElement('option');
+                    option.value = p.id;
+                    option.text = p.firstName + ' ' + p.lastName;
+                    personSelect.appendChild(option);
+                });
+            });
+    });
+</script>
+
+  
 
 </body>
 </html>

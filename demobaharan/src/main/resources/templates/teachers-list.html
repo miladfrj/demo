@@ -13,7 +13,7 @@
 </head>
 <body>
 <h2 style="text-align: center;">لیست اساتید</h2>
-<a th:href="@{/teachers/new}" class="btn">افزودن استاد</a>
+<a th:href="@{/teachers/new(username=${username})}" class="btn">افزودن استاد</a>
 <table>
     <thead>
     <tr>
@@ -34,8 +34,7 @@
         <td th:text="${teacher.proMajor}"></td>
 
         <td>
-            <a th:href="@{/teachers/delete/{id}(id=${teacher.id})}" class="btn" onclick="return confirm('حذف شود؟')">حذف</a>
-        </td>
+            <a th:href="@{/teachers/delete/{id}(id=${teacher.id},username=${username})}" class="btn" ...>حذف</a>        </td>
     </tr>
     </tbody>
 </table>

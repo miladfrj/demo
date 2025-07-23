@@ -23,23 +23,9 @@ public class LoginController {
 
     @GetMapping("/login")
     public String loginPage(Model model) {
-        model.addAttribute("user", new User());
         return "login";
     }
-
-    @PostMapping("/login")
-    public String login(@ModelAttribute("user") User user, Model model , HttpSession session) {
-        Optional<User> foundUser = userService.login(user.getUsername(), user.getPassword());
-        if (foundUser.isPresent()) {
-            session.setAttribute("user", foundUser);
-            session.setAttribute("role", foundUser.get().getRole());
-            return "redirect:/home";
-        } else {
-            model.addAttribute("loginError", "نام کاربری یا رمز عبور اشتباه است");
-            return "login";
-        }
-    }
-    }
+}
 
 
 

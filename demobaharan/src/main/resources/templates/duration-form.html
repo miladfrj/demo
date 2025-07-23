@@ -52,19 +52,19 @@
 </head>
 <body>
 <form th:action="@{/university-duration/save}" th:object="${duration}" method="post">
-  <label>Term (Duration):</label>
+  <label>ترم:</label>
   <select th:field="*{duration}">
     <option th:each="d : ${T(ir.baharn.demobaharan.model.Duration).values()}"
             th:value="${d}"
             th:text="${d.title}"></option>
   </select>
 
-  <label>Course:</label>
+  <label>درس:</label>
   <select th:field="*{course.id}">
     <option th:each="c : ${courses}" th:value="${c.id}" th:text="${c.name}"></option>
   </select>
 
-  <label>Teacher:</label>
+  <label>استاد:</label>
   <select th:field="*{teacher.id}">
     <option th:each="t : ${teachers}" th:value="${t.id}" th:text="${t.person.firstName + ' ' + t.person.lastName}"></option>
   </select>

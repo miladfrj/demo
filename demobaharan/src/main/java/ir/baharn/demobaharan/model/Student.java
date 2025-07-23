@@ -18,7 +18,7 @@ public class Student extends BaseModel {
     @Column(nullable = false)
     private String proMajor;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Person person;
 
 }
